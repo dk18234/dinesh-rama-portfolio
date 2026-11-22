@@ -14,4 +14,4 @@ The supplied layout and styling are retained. Unknown non-project personal field
 
 The live public portfolio was reviewed with six project cards, the Strata and portfolio detail dialogs, source/demo destinations, Escape, Tab/Shift+Tab focus containment, focus restoration, the category empty state, and mobile-menu navigation at a 390-pixel viewport. The public page uses a monogram and a résumé-request link. The existing managed website was updated separately with its current audience and supplied portrait/résumé retained.
 
-Screenshot: `docs/assets/portfolio.jpg`. No formal accessibility certification or production usage metric is claimed.
+Screenshot: `docs/screenshots/portfolio.jpg`. No formal accessibility certification or production usage metric is claimed.
