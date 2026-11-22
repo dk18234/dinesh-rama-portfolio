@@ -177,8 +177,8 @@ function Nav({ active }: { active: string }) {
 
 function Hero() {
   const stats = [
-    { value: '—', label: 'Years building software' },
-    { value: '—', label: 'Enterprise clients served' },
+    { value: '3+', label: 'Years building software' },
+    { value: '3', label: 'Organizations worked with' },
     { value: '6', label: 'Featured projects' },
     { value: String(certifications.length), label: 'AWS certification' },
   ];
@@ -377,7 +377,7 @@ function About() {
                 <FileText className="h-6 w-6 text-peach" />
                 <p className="text-lg text-white">
                   Curious about the journey behind these skills?{' '}
-                  <span className="inline-flex items-center gap-1 font-serif italic text-gradient">
+                  <span className="inline-flex items-center gap-1 font-sans font-semibold not-italic text-iris">
                     Request my résumé
                     <ArrowUpRight className="h-4 w-4 text-peach transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
                   </span>
