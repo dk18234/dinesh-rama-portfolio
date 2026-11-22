@@ -6,7 +6,7 @@ A responsive React and TypeScript website connecting six engineering case studie
 
 ![Completed portfolio project cards](docs/screenshots/portfolio.jpg)
 
-The supplied website design was adapted and personalized with AI assistance. Its original layout, colors, fonts, animation language, section order, navigation, filters, six-card grid, awards section, and project dialogs are retained. The original template design is not claimed as original work.
+The supplied website design was adapted and personalized with AI assistance. Its original layout, colors, fonts, animation language, section order, navigation, filters, six-card grid, and project dialogs are retained. The original template design is not claimed as original work.
 
 ## Six projects
 
@@ -20,6 +20,14 @@ The supplied website design was adapted and personalized with AI assistance. Its
 | Engineering Portfolio Website | React presentation, responsive navigation, project exploration |
 
 The final card describes this website itself. Its source link points here and its demo opens the deployed portfolio.
+
+## Skills and credentials
+
+The skills section uses estimated 1–10 familiarity ratings with visible bars and category filters. New portfolio topics are marked as learning. Certifications and Conferences & Presentations include AWS Solutions Architect – Associate, SC26 attendance, and the supplied EDUCAUSE presentation title.
+
+![Rated skills](docs/screenshots/skills.jpg)
+
+![Certifications and conference presentation](docs/screenshots/credentials.jpg)
 
 ## Run locally
 
@@ -45,7 +53,7 @@ npm run dev
 
 Project dialogs support Escape, keyboard focus containment, and focus restoration to the opening control. Reduced-motion preferences are respected. No WCAG certification, analytics, backend database, or contact-message delivery service is claimed.
 
-Personal facts come from supplied material. Unknown skill levels and unprovided awards/publication details remain as placeholders rather than invented credentials. All six **project entries** are complete. The public version uses a monogram and a résumé-request link. The existing managed personal site retains the supplied portrait and résumé. No work experience or credentials are fabricated.
+Personal facts come from supplied material. Skills show estimated familiarity on a 1–10 scale with visible bars, with new portfolio topics marked as learning. Certifications and conferences replace awards and publication placeholders: AWS Solutions Architect – Associate (December 2024), SC26 attendance, and the supplied EDUCAUSE presentation title. Unprovided EDUCAUSE date and session URL are omitted. All six **project entries** are complete. The public version uses a monogram and a résumé-request link. The existing managed personal site retains the supplied portrait and résumé. No work experience or credentials are fabricated.
 
 ## Content and deployment
 

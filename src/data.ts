@@ -4,14 +4,10 @@ import {
   Brain,
   Server,
   Globe,
-  BarChart3,
-  Cpu,
   Cloud,
   GitBranch,
-  AppWindow,
   BugPlay,
   Terminal,
-  Send,
   type LucideIcon,
 } from 'lucide-react';
 
@@ -144,62 +140,55 @@ export const projects: Project[] = [
 
 export interface Skill {
   name: string;
-  level: number | null;
+  level: number;
   icon: LucideIcon;
   category: string;
+  learning?: boolean;
 }
 
+// Estimated familiarity on a 1–10 scale, based on the supplied résumé.
+// New portfolio topics are marked as learning rather than professional expertise.
 export const skills: Skill[] = [
-  { name: 'Java', level: null, icon: Code, category: 'Programming Languages' },
-  { name: 'Python', level: null, icon: Code, category: 'Programming Languages' },
-  { name: 'TypeScript', level: null, icon: Code, category: 'Programming Languages' },
-  { name: 'JavaScript', level: null, icon: Code, category: 'Programming Languages' },
-  { name: 'Bash', level: null, icon: Code, category: 'Programming Languages' },
-  { name: 'PowerShell', level: null, icon: Code, category: 'Programming Languages' },
-  { name: 'SQL', level: null, icon: Code, category: 'Programming Languages' },
-  { name: 'PostgreSQL', level: null, icon: Database, category: 'Database' },
-  { name: 'SQL Queries', level: null, icon: Database, category: 'Database' },
-  { name: 'Data Validation', level: null, icon: Database, category: 'Database' },
-  { name: 'Data Reconciliation', level: null, icon: Database, category: 'Database' },
-  { name: 'Field Mapping', level: null, icon: Database, category: 'Database' },
-  { name: 'HTML', level: null, icon: Globe, category: 'Frontend' },
-  { name: 'CSS', level: null, icon: Globe, category: 'Frontend' },
-  { name: 'Bootstrap 5', level: null, icon: Globe, category: 'Frontend' },
-  { name: 'Stimulus', level: null, icon: Globe, category: 'Frontend' },
-  { name: 'Fetch API', level: null, icon: Globe, category: 'Frontend' },
-  { name: 'Turbo Streams', level: null, icon: Globe, category: 'Frontend' },
-  { name: 'Spring Boot', level: null, icon: Server, category: 'Backend' },
-  { name: 'Spring WebFlux', level: null, icon: Server, category: 'Backend' },
-  { name: 'REST / SOAP', level: null, icon: Server, category: 'Backend' },
-  { name: 'Spring Batch', level: null, icon: Server, category: 'Backend' },
-  { name: 'Apache Camel', level: null, icon: Server, category: 'Backend' },
-  { name: 'Skill 01', level: null, icon: Brain, category: 'AI/ML' },
-  { name: 'Skill 02', level: null, icon: Cpu, category: 'AI/ML' },
-  { name: 'Skill 03', level: null, icon: Cpu, category: 'AI/ML' },
-  { name: 'Skill 04', level: null, icon: Cpu, category: 'AI/ML' },
-  { name: 'Skill 05', level: null, icon: Brain, category: 'AI/ML' },
-  { name: 'Skill 06', level: null, icon: Brain, category: 'AI/ML' },
-  { name: 'Skill 07', level: null, icon: Brain, category: 'AI/ML' },
-  { name: 'Amazon S3', level: null, icon: Cloud, category: 'Cloud' },
-  { name: 'Linux', level: null, icon: Server, category: 'DevOps' },
-  { name: 'Windows', level: null, icon: Server, category: 'DevOps' },
-  { name: 'cron', level: null, icon: Server, category: 'DevOps' },
-  { name: 'Task Scheduler', level: null, icon: BarChart3, category: 'DevOps' },
-  { name: 'Healthchecks.io', level: null, icon: GitBranch, category: 'DevOps' },
-  { name: 'JUnit', level: null, icon: AppWindow, category: 'Applications' },
-  { name: 'Mockito', level: null, icon: AppWindow, category: 'Applications' },
-  { name: 'Git', level: null, icon: AppWindow, category: 'Applications' },
-  { name: 'GitHub', level: null, icon: BugPlay, category: 'Applications' },
-  { name: 'STS', level: null, icon: GitBranch, category: 'Applications' },
-  { name: 'rsync', level: null, icon: Terminal, category: 'Applications' },
-  { name: 'Robocopy', level: null, icon: GitBranch, category: 'Applications' },
-  { name: 'Debezium', level: null, icon: BugPlay, category: 'Applications' },
-  { name: 'MutationObserver', level: null, icon: Send, category: 'Applications' },
+  { name: "Java", level: 8, icon: Code, category: "Languages" },
+  { name: "Python", level: 7, icon: Code, category: "Languages" },
+  { name: "TypeScript", level: 6, icon: Code, category: "Languages" },
+  { name: "JavaScript", level: 7, icon: Code, category: "Languages" },
+  { name: "Bash", level: 7, icon: Terminal, category: "Languages" },
+  { name: "PowerShell", level: 6, icon: Terminal, category: "Languages" },
+  { name: "Spring Boot", level: 8, icon: Server, category: "Backend" },
+  { name: "REST / SOAP APIs", level: 8, icon: Server, category: "Backend" },
+  { name: "Spring Batch", level: 7, icon: Server, category: "Backend" },
+  { name: "Spring WebFlux", level: 6, icon: Server, category: "Backend" },
+  { name: "Apache Camel", level: 6, icon: Server, category: "Backend" },
+  { name: "Node.js", level: 5, icon: Server, category: "Backend", learning: true },
+  { name: "SQL", level: 7, icon: Database, category: "Data & Databases" },
+  { name: "PostgreSQL", level: 7, icon: Database, category: "Data & Databases" },
+  { name: "Data Validation", level: 8, icon: Database, category: "Data & Databases" },
+  { name: "Data Reconciliation", level: 7, icon: Database, category: "Data & Databases" },
+  { name: "Debezium", level: 6, icon: Database, category: "Data & Databases" },
+  { name: "HTML", level: 7, icon: Globe, category: "Frontend" },
+  { name: "CSS", level: 6, icon: Globe, category: "Frontend" },
+  { name: "React", level: 5, icon: Globe, category: "Frontend", learning: true },
+  { name: "Tailwind CSS", level: 5, icon: Globe, category: "Frontend", learning: true },
+  { name: "Ollama / Local LLMs", level: 4, icon: Brain, category: "Applied AI", learning: true },
+  { name: "RAG / Hybrid Retrieval", level: 4, icon: Brain, category: "Applied AI", learning: true },
+  { name: "Embeddings", level: 4, icon: Brain, category: "Applied AI", learning: true },
+  { name: "Evidence-grounded AI", level: 4, icon: Brain, category: "Applied AI", learning: true },
+  { name: "LLM Evaluation", level: 4, icon: Brain, category: "Applied AI", learning: true },
+  { name: "AWS (EC2, IAM, VPC)", level: 7, icon: Cloud, category: "Cloud & Systems" },
+  { name: "Amazon S3", level: 7, icon: Cloud, category: "Cloud & Systems" },
+  { name: "Linux Administration", level: 8, icon: Terminal, category: "Cloud & Systems" },
+  { name: "Windows Automation", level: 7, icon: Terminal, category: "Cloud & Systems" },
+  { name: "Backups / rsync / Robocopy", level: 7, icon: Server, category: "Cloud & Systems" },
+  { name: "Git / GitHub", level: 7, icon: GitBranch, category: "Testing & Delivery" },
+  { name: "JUnit", level: 7, icon: BugPlay, category: "Testing & Delivery" },
+  { name: "Mockito", level: 7, icon: BugPlay, category: "Testing & Delivery" },
+  { name: "Docker Compose", level: 5, icon: Server, category: "Testing & Delivery", learning: true },
+  { name: "GitHub Actions", level: 5, icon: GitBranch, category: "Testing & Delivery", learning: true },
+  { name: "OpenAPI / Contract Testing", level: 5, icon: BugPlay, category: "Testing & Delivery", learning: true },
 ];
 
-export const skillCategories = [
-  'All', 'Programming Languages', 'Database', 'Frontend', 'Backend', 'AI/ML', 'Applications', 'Cloud', 'DevOps',
-];
+export const skillCategories = ["All", "Languages", "Backend", "Data & Databases", "Frontend", "Applied AI", "Cloud & Systems", "Testing & Delivery"];
 
 export interface Experience {
   title: string;
@@ -285,12 +274,25 @@ export const education = [
   }
 ];
 
-export const awards = [
-  "Award / certification 01 — details to be added.",
-  "Award / certification 02 — details to be added.",
-  "Award / certification 03 — details to be added.",
-  "Award / certification 04 — details to be added.",
-  "Award / certification 05 — details to be added."
+export const certifications = [
+  {
+    title: 'AWS Certified Solutions Architect – Associate',
+    issuer: 'Amazon Web Services',
+    earned: 'December 2024',
+    level: 'Associate',
+  },
 ];
 
-export const publications = ['Publication details will be added here.'];
+export interface Conference {
+  name: string;
+  role: 'Attendee' | 'Presenter';
+  year?: string;
+  location?: string;
+  presentation?: string;
+  url?: string;
+}
+
+export const conferences: Conference[] = [
+  { name: 'SC26 · Supercomputing Conference', role: 'Attendee', year: '2026', location: 'Chicago, Illinois' },
+  { name: 'EDUCAUSE Conference', role: 'Presenter', presentation: 'Breaking the Bottleneck: A Practical Framework for Research Security Exceptions' },
+];

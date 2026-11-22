@@ -15,3 +15,5 @@ The supplied layout and styling are retained. Unknown non-project personal field
 The live public portfolio was reviewed with six project cards, the Strata and portfolio detail dialogs, source/demo destinations, Escape, Tab/Shift+Tab focus containment, focus restoration, the category empty state, and mobile-menu navigation at a 390-pixel viewport. The public page uses a monogram and a résumé-request link. The existing managed website was updated separately with its current audience and supplied portrait/résumé retained.
 
 Screenshot: `docs/screenshots/portfolio.jpg`. No formal accessibility certification or production usage metric is claimed.
+
+Skills update: checks validate unique skill names, integer 1–10 ratings, nonempty categories, complete certification records, and conference roles. Browser review confirmed 37 filled bars with matching ratings, five Applied AI skills under that filter, restoration of all 37 skills, and the AWS/SC26/EDUCAUSE content. At a 390 px phone frame (375 px content width), skills and credentials fit without horizontal scrolling and the mobile Credentials navigation closes the menu.

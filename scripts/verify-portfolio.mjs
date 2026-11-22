@@ -12,5 +12,9 @@ try{
  assert.equal(data.projects[4].github,'https://github.com/dk18234/strata-scheduler');assert.equal(data.projects[5].github,'https://github.com/dk18234/dinesh-rama-portfolio');
  assert.ok(data.photoUrl.startsWith(base));await access('public/'+data.photoUrl.slice(base.length));
  if(data.resumeUrl.startsWith(base)){await access('public/'+data.resumeUrl.slice(base.length));assert.ok((await readFile('public/'+data.resumeUrl.slice(base.length))).subarray(0,4).equals(Buffer.from('%PDF')));}else{assert.match(data.resumeUrl,/^mailto:[^?]+\?subject=Resume/);}
- console.log('Six complete project entries, source/demo links, and subpath-safe image/photo/resume assets verified.');
+ const skillNames=new Set();for(const s of data.skills){assert.ok(!skillNames.has(s.name),'Duplicate skill: '+s.name);skillNames.add(s.name);assert.ok(Number.isInteger(s.level)&&s.level>=1&&s.level<=10,'Skill rating must be an integer from 1 to 10: '+s.name);assert.ok(!/Skill 0[0-9]|placeholder/i.test(s.name));assert.ok(data.skillCategories.includes(s.category),'Unknown skill category: '+s.category);}
+ for(const category of data.skillCategories.filter(c=>c!=='All'))assert.ok(data.skills.some(s=>s.category===category),'Empty skill category: '+category);
+ assert.ok(data.certifications.length>0);for(const c of data.certifications){assert.ok(c.title&&c.issuer&&c.earned);assert.ok(!/will be added|placeholder/i.test(JSON.stringify(c)));}
+ assert.ok(data.conferences.length>=2);for(const c of data.conferences){assert.ok(c.name);assert.ok(['Attendee','Presenter'].includes(c.role));if(c.url)assert.ok(c.url.startsWith('https://'));}
+ console.log('Six projects, asset paths, 1–10 skill ratings, nonempty categories, certifications, and conference roles verified.');
 }finally{await rm(temp,{force:true});}

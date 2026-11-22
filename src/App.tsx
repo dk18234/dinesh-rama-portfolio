@@ -14,7 +14,7 @@ import {
   BarChart3,
   Calendar,
   GraduationCap,
-  BookOpen,
+  Mic2,
   Menu,
   X,
   Plus,
@@ -26,8 +26,8 @@ import {
   skillCategories,
   experience,
   education,
-  awards,
-  publications,
+  certifications,
+  conferences,
   resumeUrl,
   photoUrl,
   email,
@@ -36,7 +36,7 @@ import {
   type Project,
 } from './data';
 
-const sections = ['home', 'about', 'experience', 'projects', 'skills', 'education', 'awards', 'contact'];
+const sections = ['home', 'about', 'experience', 'projects', 'skills', 'education', 'credentials', 'contact'];
 const ease = [0.22, 1, 0.36, 1] as const;
 
 const reveal = {
@@ -180,7 +180,7 @@ function Hero() {
     { value: '—', label: 'Years building software' },
     { value: '—', label: 'Enterprise clients served' },
     { value: '6', label: 'Featured projects' },
-    { value: '—', label: 'Awards & certifications' },
+    { value: String(certifications.length), label: 'AWS certification' },
   ];
   const socials = [
     { href: `mailto:${email}`, icon: Mail, label: 'Email' },
@@ -387,10 +387,10 @@ function About() {
           </div>
         </div>
         <Reveal delay={0.1} className="mt-5">
-          <p className="card px-8 py-5 text-zinc-400">
+          <a href="#credentials" className="card block px-8 py-5 text-zinc-300 transition hover:border-iris/40">
             <Award className="mr-2 inline h-4 w-4 text-peach" />
-            Awards and certifications will be added here.
-          </p>
+            AWS Certified Solutions Architect – Associate <span className="text-zinc-500">· December 2024</span>
+          </a>
         </Reveal>
       </div>
     </section>
@@ -529,36 +529,34 @@ function Skills() {
     <section id="skills" className="px-4 py-28 md:py-36">
       <div className="mx-auto max-w-6xl">
         <SectionHeading index="04" eyebrow="Skills" title="Tools of" accent="the trade." />
+        <div className="mb-8 flex flex-col gap-4 rounded-2xl border border-white/10 bg-white/[0.025] p-5 sm:flex-row sm:items-center sm:justify-between">
+          <p className="max-w-xl text-sm leading-relaxed text-zinc-400">
+            Estimated familiarity on a <span className="text-zinc-200">1–10 scale</span>, based on résumé experience and portfolio work.
+            Skills marked <span className="text-iris">Learning</span> are being developed through the projects.
+          </p>
+          <div className="grid shrink-0 grid-cols-2 gap-x-4 gap-y-2 font-mono text-xs text-zinc-400" aria-label="Rating guide">
+            <span>1–3 Exploring</span><span>4–6 Developing</span><span>7–8 Comfortable</span><span>9–10 Advanced</span>
+          </div>
+        </div>
         <FilterTabs id="skills" options={skillCategories} value={filter} onChange={setFilter} />
         <div className="grid items-start gap-5 md:grid-cols-2 lg:grid-cols-3">
           {groups.map(({ category, items }, i) => (
-            <motion.div
-              key={`${filter}-${category}`}
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, ease, delay: i * 0.04 }}
-              className="card p-6"
-            >
-              <h3 className="eyebrow mb-5 flex items-center justify-between">
+            <motion.div key={`${filter}-${category}`} initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, ease, delay: i * 0.04 }} className="card p-6">
+              <h3 className="mb-6 flex items-center justify-between gap-3 text-sm font-semibold text-white">
                 {category} <span className="text-zinc-600">{String(items.length).padStart(2, '0')}</span>
               </h3>
-              <ul className="space-y-4">
-                {items.map(({ name, level, icon: Icon }) => (
+              <ul className="space-y-5">
+                {items.map(({ name, level, icon: Icon, learning }) => (
                   <li key={name}>
-                    <div className="mb-1.5 flex items-center justify-between text-sm">
-                      <span className="flex items-center gap-2 text-zinc-200">
-                        <Icon className="h-3.5 w-3.5 text-zinc-500" /> {name}
-                      </span>
-                      <span className="font-mono text-xs text-zinc-500">{level === null ? '—' : `${level}%`}</span>
+                    <div className="mb-2 flex items-start justify-between gap-3 text-sm">
+                      <div className="min-w-0">
+                        <span className="flex items-start gap-2 text-zinc-200"><Icon aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0 text-zinc-500" />{name}</span>
+                        {learning && <span className="ml-6 text-xs text-iris">Learning</span>}
+                      </div>
+                      <span className="shrink-0 font-mono text-sm text-peach">{level}<span className="text-zinc-500">/10</span></span>
                     </div>
-                    <div className="h-1 overflow-hidden rounded-full bg-white/[0.06]">
-                      <motion.div
-                        className="h-full rounded-full bg-gradient-to-r from-iris to-peach"
-                        initial={{ width: 0 }}
-                        whileInView={{ width: `${level ?? 0}%` }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 1.1, ease }}
-                      />
+                    <div role="progressbar" aria-label={`${name} familiarity`} aria-valuemin={0} aria-valuemax={10} aria-valuenow={level} aria-valuetext={`${level} out of 10${learning ? ', learning through portfolio projects' : ''}`} className="h-2 overflow-hidden rounded-full bg-white/10">
+                      <div className="h-full rounded-full bg-gradient-to-r from-iris to-peach" style={{ width: `${level * 10}%` }} />
                     </div>
                   </li>
                 ))}
@@ -596,34 +594,41 @@ function Education() {
   );
 }
 
-function Awards() {
+function Credentials() {
   return (
-    <section id="awards" className="px-4 py-28 md:py-36">
+    <section id="credentials" className="px-4 py-28 md:py-36">
       <div className="mx-auto max-w-6xl">
-        <SectionHeading index="06" eyebrow="Recognition" title="Awards &" accent="publications." />
-        <div className="grid gap-5 lg:grid-cols-[1.5fr_1fr]">
+        <SectionHeading index="06" eyebrow="Credentials" title="Certifications &" accent="conferences." />
+        <div className="grid items-start gap-5 lg:grid-cols-2">
           <Reveal className="card p-8">
-            <h3 className="mb-6 flex items-center gap-2 text-lg font-semibold text-white">
-              <Award className="h-5 w-5 text-peach" /> Awards & Recognition
-            </h3>
+            <h3 className="mb-6 flex items-center gap-2 text-lg font-semibold text-white"><Award className="h-5 w-5 text-peach" />Certifications</h3>
             <ul className="divide-y divide-white/[0.06]">
-              {awards.map((a, i) => (
-                <li key={a} className="flex gap-5 py-4">
-                  <span className="font-mono text-sm text-zinc-600">{String(i + 1).padStart(2, '0')}</span>
-                  <span className="text-zinc-300">{a}</span>
+              {certifications.map((certificate) => (
+                <li key={certificate.title} className="py-3">
+                  <span className="mb-5 inline-flex rounded-full border border-iris/25 bg-iris/10 px-3 py-1 text-sm text-iris">{certificate.level}</span>
+                  <h4 className="text-2xl font-semibold leading-snug text-white">{certificate.title}</h4>
+                  <p className="mt-3 text-zinc-400">{certificate.issuer}</p>
+                  <p className="mt-5 flex items-center gap-2 text-sm text-zinc-400"><Calendar className="h-4 w-4 shrink-0" />Issued {certificate.earned}</p>
                 </li>
               ))}
             </ul>
           </Reveal>
           <Reveal delay={0.1} className="card flex flex-col bg-gradient-to-br from-iris/10 to-transparent p-8">
-            <h3 className="mb-6 flex items-center gap-2 text-lg font-semibold text-white">
-              <BookOpen className="h-5 w-5 text-peach" /> Research Publications
-            </h3>
-            {publications.map((p) => (
-              <blockquote key={p} className="font-serif text-2xl italic leading-snug text-zinc-200">
-                {p}
-              </blockquote>
-            ))}
+            <h3 className="mb-6 flex items-center gap-2 text-lg font-semibold text-white"><Mic2 className="h-5 w-5 shrink-0 text-peach" />Conferences & Presentations</h3>
+            <ul className="divide-y divide-white/10">
+              {conferences.map((conference) => (
+                <li key={conference.name} className="py-5 first:pt-0 last:pb-0">
+                  <div className="mb-3 flex flex-wrap items-center gap-3">
+                    <span className={`rounded-full border px-3 py-1 text-sm ${conference.role === 'Presenter' ? 'border-iris/25 bg-iris/10 text-iris' : 'border-white/10 bg-white/5 text-zinc-300'}`}>{conference.role}</span>
+                    {conference.year && <span className="font-mono text-sm text-zinc-400">{conference.year}</span>}
+                  </div>
+                  <h4 className="text-xl font-semibold text-white">{conference.name}</h4>
+                  {conference.presentation && <p className="mt-2 leading-relaxed text-zinc-300">{conference.presentation}</p>}
+                  {conference.location && <p className="mt-3 flex items-center gap-2 text-sm text-zinc-400"><MapPin className="h-4 w-4 shrink-0" />{conference.location}</p>}
+                  {conference.url && <a href={conference.url} target="_blank" rel="noopener noreferrer" className="mt-3 inline-flex text-sm text-iris underline decoration-iris/40 underline-offset-4 hover:text-white">View presentation</a>}
+                </li>
+              ))}
+            </ul>
           </Reveal>
         </div>
       </div>
@@ -789,7 +794,7 @@ function App() {
           <Projects onSelect={openProject} />
           <Skills />
           <Education />
-          <Awards />
+          <Credentials />
           <Contact />
         </main>
         <footer className="border-t border-white/[0.07] px-4 py-8">
