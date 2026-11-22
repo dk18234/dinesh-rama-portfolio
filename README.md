@@ -4,6 +4,8 @@ A responsive React and TypeScript website connecting six engineering case studie
 
 [Live portfolio](https://dk18234.github.io/dinesh-rama-portfolio/) · [Project hub](https://dk18234.github.io/webhook-recovery-lab/projects/) · [Beginner learning guide](guide/LEARNING.md)
 
+![Completed portfolio project cards](docs/assets/portfolio.jpg)
+
 The supplied website design was adapted and personalized with AI assistance. Its original layout, colors, fonts, animation language, section order, navigation, filters, six-card grid, awards section, and project dialogs are retained. The original template design is not claimed as original work.
 
 ## Six projects
